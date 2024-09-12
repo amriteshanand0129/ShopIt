@@ -7,3 +7,6 @@ Welcome to Lovely Professional University
 I am a computer science student
 
 This is the change  I make
+
+change 6
+
