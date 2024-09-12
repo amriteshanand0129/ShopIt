@@ -5,6 +5,7 @@ export const ProductCard = ({ product }) => {
   const { cart, cartDispatch } = useCart();
   const navigate = useNavigate();
   const isProductInCart = findProductInCart(cart, product.id);
+  const images = product.images.map(image => image.replace(/[[\]"]/g, ''));
   const onCartClick = (product) => {
     !isProductInCart
       ? cartDispatch({
@@ -16,7 +17,7 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="card card-vertical d-flex direction-column relative shadow">
       <div className="card-image-container">
-        <img className="card-image" src={product.images[0]} alt="shoes" />
+        <img className="card-image" src={images[0]} alt="shoes" />
       </div>
       <div className="card-details">
         <div className="card-title">{product.title}</div>

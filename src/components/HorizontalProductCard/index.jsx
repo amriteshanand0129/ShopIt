@@ -1,8 +1,22 @@
+import { useCart } from "../../context/cart-context";
+
 export const HorizontalProductCard = ({ product }) => {
+  
+  const { cartDispatch } = useCart();
+
+  const onRemoveCart = (product) => {
+    cartDispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: { id: product.id }
+    })
+  }
+  
+  const images = product.images.map(image => image.replace(/[[\]"]/g, ''));
+
   return (
     <div className="card-horizontal d-flex shadow m-2">
       <div className="card-hori-image-container relative">
-        <img className="card-image" src={product.images[0]} alt="shoes" />
+        <img className="card-image" src={images[0]} alt="shoes" />
       </div>
       <div className="card-details d-flex direction-column">
         <div className="card-title">{product.title}</div>
@@ -19,7 +33,7 @@ export const HorizontalProductCard = ({ product }) => {
         </div>
         <div className="cta-btn d-flex gap">
           <div className="cta-btn">
-            <button className="button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin">Remove From Cart</button>
+            <button onClick={() => onRemoveCart(product)} className="button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin">Remove From Cart</button>
           </div>
           <div className="cta-btn">
             <button className="button hori-btn btn-outline-primary btn-icon d-flex align-center justify-center gap cursor btn-margin">Move to Wishlist</button>
